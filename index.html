@@ -3,31 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Telegram Chat</title>
+    <title>GitHub Twitter Threads</title>
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
     <div class="app-container">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <h2>Chats</h2>
-            <div class="chat-list">
-                <div class="chat-item active">User1</div>
-                <div class="chat-item">User2</div>
-                <div class="chat-item">User3</div>
-            </div>
-        </div>
-        <!-- Main Chat Area -->
-        <div class="chat-container">
-            <div class="chat-header">
-                <h3>User1</h3>
-            </div>
-            <div class="chat-box" id="chatBox"></div>
-            <form id="chatForm">
-                <input type="text" id="messageInput" placeholder="Type a message..." required>
-                <button type="submit">Send</button>
+        <header>
+            <h1>GitHub Threads</h1>
+        </header>
+        <div class="post-form">
+            <form id="threadForm">
+                <select id="countrySelect" required>
+                    <option value="" disabled selected>Select your country</option>
+                    <option value="USA">USA</option>
+                    <option value="India">India</option>
+                    <option value="Brazil">Brazil</option>
+                    <option value="Japan">Japan</option>
+                    <option value="Nigeria">Nigeria</option>
+                    <!-- Add more countries as needed -->
+                </select>
+                <textarea id="threadInput" placeholder="Start a thread..." maxlength="280" required></textarea>
+                <button type="submit">Post</button>
             </form>
         </div>
+        <div class="threads" id="threadsContainer"></div>
     </div>
     <script src="index.js"></script>
 </body>
