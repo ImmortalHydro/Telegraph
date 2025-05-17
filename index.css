@@ -12,25 +12,31 @@ body {
 }
 
 .app-container {
-    max-width: 800px;
+    max-width: 700px;
     margin: 0 auto;
     padding: 20px;
 }
 
 header {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 h1 {
-    font-size: 24px;
+    font-size: 28px;
     color: #58a6ff;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 14px;
+    color: #8b949e;
 }
 
 .post-form {
     background-color: #161b22;
     border: 1px solid #30363d;
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 16px;
     margin-bottom: 20px;
 }
@@ -62,7 +68,7 @@ select:focus, textarea:focus {
 }
 
 button {
-    padding: 10px;
+    padding: 10px 20px;
     border: none;
     border-radius: 6px;
     background-color: #238636;
@@ -85,13 +91,15 @@ button:hover {
 .thread {
     background-color: #161b22;
     border: 1px solid #30363d;
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 16px;
 }
 
 .thread-header {
     display: flex;
     justify-content: space-between;
+Fencing
+    align-items: center;
     margin-bottom: 8px;
 }
 
@@ -100,7 +108,7 @@ button:hover {
     color: #58a6ff;
 }
 
-.thread-country {
+.thread-country, .thread-time {
     font-size: 12px;
     color: #8b949e;
 }
