@@ -4,14 +4,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const countrySelect = document.getElementById('countrySelect');
     const threadsContainer = document.getElementById('threadsContainer');
 
-    // Mock user (in a real app, use auth)
+    // Mock user
     const currentUser = 'User' + Math.floor(Math.random() * 1000);
 
-    // Load threads from local storage
-    let threads = JSON.parse(localStorage.getItem('threads')) || [];
+    // In-memory thread storage (resets on refresh)
+    let threads = [];
 
-    // Render threads on load
+    // Render initial threads
     renderThreads();
+
+    // Format timestamp (HH:MM)
+    const getTime = () => {
+        const now = new Date();
+        return `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+    };
 
     // Handle thread submission
     threadForm.addEventListener('submit', (e) => {
@@ -28,18 +34,17 @@ document.addEventListener('DOMContentLoaded', () => {
             country,
             text,
             replies: [],
-            timestamp: new Date().toISOString()
+            timestamp: getTime()
         };
 
         threads.unshift(thread); // Add to top
-        localStorage.setItem('threads', JSON.stringify(threads));
         renderThreads();
 
         threadInput.value = '';
         countrySelect.value = '';
     });
 
-    // Render all threads
+    // Render threads
     function renderThreads() {
         threadsContainer.innerHTML = '';
         threads.forEach(thread => {
@@ -48,7 +53,10 @@ document.addEventListener('DOMContentLoaded', () => {
             threadElement.innerHTML = `
                 <div class="thread-header">
                     <span class="thread-user">${thread.user}</span>
-                    <span class="thread-country">${thread.country}</span>
+                    <div>
+                        <span class="thread-country">${thread.country}</span> • 
+                        <span class="thread-time">${thread.timestamp}</span>
+                    </div>
                 </div>
                 <div class="thread-text">${thread.text}</div>
                 <div class="thread-actions">
@@ -57,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="reply-form">
                     <form class="reply-form-form">
                         <textarea placeholder="Add a reply..." maxlength="280" required></textarea>
-                        <button type="submit">Post Reply</button>
+                        <button type="submit">Reply</button>
                     </form>
                 </div>
                 <div class="replies">
@@ -65,7 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="reply">
                             <div class="thread-header">
                                 <span class="thread-user">${reply.user}</span>
-                                <span class="thread-country">${reply.country}</span>
+                                <div>
+                                    <span class="thread-country">${reply.country}</span> • 
+                                    <span class="thread-time">${reply.timestamp}</span>
+                                </div>
                             </div>
                             <div class="thread-text">${reply.text}</div>
                         </div>
@@ -91,15 +102,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 const reply = {
                     id: Date.now(),
                     user: currentUser,
-                    country: countrySelect.value || thread.country, // Fallback to thread's country
+                    country: countrySelect.value || thread.country, // Fallback
                     text: replyText,
-                    timestamp: new Date().toISOString()
+                    timestamp: getTime()
                 };
 
                 thread.replies.push(reply);
-                localStorage.setItem('threads', JSON.stringify(threads));
                 renderThreads();
+                replyForm.classList.remove('active');
             });
         });
-    }
-});
