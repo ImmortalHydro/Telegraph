@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Twitter Threads</title>
+    <title>ZeroThreads</title>
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
     <div class="app-container">
         <header>
-            <h1>GitHub Threads</h1>
+            <h1>ZeroThreads</h1>
+            <p>Share your thoughts globally, Twitter-style</p>
         </header>
         <div class="post-form">
             <form id="threadForm">
                 <select id="countrySelect" required>
                     <option value="" disabled selected>Select your country</option>
+                    <option value="Pakistan">Pakistan</option>
                     <option value="USA">USA</option>
                     <option value="India">India</option>
                     <option value="Brazil">Brazil</option>
                     <option value="Japan">Japan</option>
-                    <option value="Nigeria">Nigeria</option>
-                    <!-- Add more countries as needed -->
                 </select>
-                <textarea id="threadInput" placeholder="Start a thread..." maxlength="280" required></textarea>
+                <textarea id="threadInput" placeholder="What's happening? (280 chars max)" maxlength="280" required></textarea>
                 <button type="submit">Post</button>
             </form>
         </div>
@@ -31,4 +31,3 @@
     <script src="index.js"></script>
 </body>
 </html>
-
